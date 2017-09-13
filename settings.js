@@ -62,6 +62,34 @@ let markets = [
     //     }
     //
     // },
+
+    {
+        marketName: 'bx',
+        URL: 'https://bx.in.th/api/', //URL To Fetch API From.
+        toBTCURL: false, //URL, if needed for an external bitcoin price api.
+        pairURL: '',
+        last: function (data, coin_prices) { //Get the last price of coins in JSON data
+            return new Promise(function (res, rej) {
+                try {
+                    for (let key in data) {
+                        let obj = data[key]
+                        if (obj["primary_currency"] === 'BTC') {
+                            let coinName = obj["secondary_currency"];
+                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
+                            coin_prices[coinName].bx = obj.last_price;
+                        }
+                    }
+                    res(coin_prices);
+                }
+                catch (err) {
+                    console.log(err);
+                    rej(err);
+                }
+
+            })
+        },
+    },
+
     {
         marketName: 'bittrex',
         URL: 'https://bittrex.com/api/v1.1/public/getmarketsummaries',
@@ -254,33 +282,6 @@ let markets = [
                     }
                     res(coin_prices);
 
-                }
-                catch (err) {
-                    console.log(err);
-                    rej(err);
-                }
-
-            })
-        },
-    },
-
-    {
-        marketName: 'bx',
-        URL: 'https://bx.in.th/api/', //URL To Fetch API From.
-        toBTCURL: false, //URL, if needed for an external bitcoin price api.
-        pairURL: '',
-        last: function (data, coin_prices) { //Get the last price of coins in JSON data
-            return new Promise(function (res, rej) {
-                try {
-                    for (let key in data) {
-                        let obj = data[key]
-                        if (obj["primary_currency"] === 'BTC') {
-                            let coinName = obj["secondary_currency"];
-                            if (!coin_prices[coinName]) coin_prices[coinName] = {};
-                            coin_prices[coinName].bx = obj.last_price;
-                        }
-                    }
-                    res(coin_prices);
                 }
                 catch (err) {
                     console.log(err);
