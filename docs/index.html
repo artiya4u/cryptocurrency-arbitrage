@@ -11,7 +11,7 @@
           content="A triangular arbitrage opportunity calculator for cryptocurrencies. Over 800 currencies and 50 markets. Open source, free to use and on github."/>
     <meta name="Keywords"
           content="arbitrage-opportunity, trading-bot, bitcoin, litecoin, cryptocurrency, altcoins, ethereum">
-<meta name="google-site-verification" content="mCmTVJjZWdqJhAclwP1_RNius8zq_g7ByWcUVD_AlKA" />
+    <meta name="google-site-verification" content="mCmTVJjZWdqJhAclwP1_RNius8zq_g7ByWcUVD_AlKA"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -48,8 +48,8 @@
         }
     </style>
 
-    <link rel="stylesheet"  type="text/css"  href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"   href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="fonts/cryptocoins.css">
@@ -61,8 +61,8 @@
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
             a = s.createElement(o),
                 m = s.getElementsByTagName(o)[0];
             a.async = 1;
@@ -84,65 +84,6 @@
 
 
 <a href="#header" id="back-to-top" class="top"><i class="fa fa-chevron-up"></i></a>
-<section id="header" class="header" style="display: none">
-    <div class="top-bar">
-        <div class="container">
-            <div class="navigation" id="navigation-scroll">
-                <div class="row">
-                    <div class="col-md-11 col-xs-10">
-                        <a href="index.html"><span id="logo"><strong class="strong">C</strong>C.A</span></a>
-                    </div>
-                    <!--<div class="col-md-1 col-xs-2">-->
-                    <!--<p class="nav-button">-->
-                    <!--<button id="trigger-overlay" type="button">-->
-                    <!--<i class="fa fa-bars"></i>-->
-                    <!--</button>-->
-                    <!--</p>-->
-                    <!--</div>-->
-                </div>
-            </div><!-- /.row -->
-        </div><!-- /.navigation -->
-    </div><!--/.container-->
-    </div><!--/.top-bar-->
-
-    <div class="container">
-        <div class="starting">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="header-image">
-                        <img src="img/graph-design.png" alt="LUCY" class="wow flipInY animated animated main-image">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="banner-text">
-                        <h2 class="animation-box wow bounceIn animated"><strong class="strong">An</strong> alt-coin
-                            arbitrage opportunity finder</h2>
-                        <p>
-                            A fully open source and up-to-date cross-market, triangular arbitrage opportunity calculator
-                            for cryptocurrencies. Over 800 currencies and 50 markets. Created by <a target="_blank"
-                                                                                                    href="https://github.com/manu354">Manu
-                            Masson. </a>
-                        </p>
-                        <a target="_blank" href="https://github.com/manu354/cryptocurrency-arbitrage"
-                           class="btn btn-download wow animated fadeInLeft">
-                            <i class="fa fa-github pull-left"></i>
-                            <strong>Find on</strong>
-                            <br/>Github </a>
-                        <a target="_blank" href="https://github.com/manu354/cryptocurrency-arbitrage/releases/latest"
-                           class="btn btn-download wow animated fadeInRight">
-                            <i class="fa fa-code-fork pull-left"></i>
-                            <strong>Download</strong>
-                            <br/>Source Code </a>
-                    </div> <!-- /.banner-text -->
-                </div>
-            </div>
-        </div>
-        <!-- /.starting -->
-    </div>
-    <!-- /.container -->
-</section>
-<!-- /#header -->
-
 <section id="service">
     <div class="container">
         <div class="row">
@@ -155,15 +96,9 @@
                             For more information visit the github repo. You can disable different markets and coins from
                             the panel on the left.
                         </p>
-
-
                         <div class="socket-loader"></div>
-
                         <div class="best-pair wow animated fadeIn">
-
-
                         </div>
-
                     </div>
                 </div>
             </div><!-- .col-md-12 close -->
@@ -250,7 +185,8 @@
                 <a>{{market2}}</a>: {{market2price}}<span class="mBTC">mBTC</span>
             </p>
         </div>
-        <a href="javascript:history('{{coin}}');">Show history</a> <a class="remove" href="#!" onclick="remove(this, 'high')">
+        <a href="javascript:history('{{coin}}');">Show history</a> <a class="remove" href="#!"
+                                                                      onclick="remove(this, 'high')">
         Remove this opportunity </a>
     </li>
     <li class="coin-info-low" data-coin="{{pair.coin}}" data-market1="{{pair.market1}}" data-market2="{{pair-market2}}">
@@ -266,7 +202,8 @@
                     class="mBTC">mBTC</span>
             </p>
         </div>
-        <a href="javascript:history({{pair.coin}}');">Show history</a> <a class="remove" href="#!" onclick="remove(this, 'low')">Remove
+        <a href="javascript:history({{pair.coin}}');">Show history</a> <a class="remove" href="#!"
+                                                                          onclick="remove(this, 'low')">Remove
         this opportunity</a>
     </li>
 </script>
