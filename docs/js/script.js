@@ -4,10 +4,6 @@ function history(coin1, coin2) {
     alert('History graphs coming soon', coin1, coin2);
 }
 
-
-
-alert("Thanks to a donator we can have this site hosted for 20 months. <3. Although as of right now it still needs to be run locally.");
-
 let checkedMarkets = {
         showAll: true,
         bittrex: true,
@@ -70,7 +66,11 @@ function addRemoveCoin(coin) {
 
 function addRemoveMarket(market) {
     console.log("Trying to add/remove market")
-    if (addOne){ console.log("If add one"); checkedMarkets[market] = !checkedMarkets[market] };
+    if (addOne) {
+        console.log("If add one");
+        checkedMarkets[market] = !checkedMarkets[market]
+    }
+    ;
 
     if (checkedMarkets[market]) {
         console.log("If add one");
@@ -89,7 +89,7 @@ function remove(item, highOrLow) {
     let li = $(item).closest('li');
     let coin = li.attr("data-coin");
     let market = li.attr("data-market1");
-    if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin]= [];
+    if (!Array.isArray(checkedCoins[coin])) checkedCoins[coin] = [];
     checkedCoins[coin].push(market);
     console.log("Removing item...", checkedCoins[coin]);
     useData();
@@ -184,16 +184,17 @@ $(window).load(function () {
     $('.loadNumberInput').change(function () {
         useData();
     });
+
     function allowedData(lowMarket, highMarket, coinName) {
-        if(checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]){
-            if(Array.isArray(checkedCoins[coinName])) {
-                if(!checkedCoins[coinName].includes(lowMarket) && !checkedCoins[coinName].includes(highMarket)) {
+        if (checkedMarkets[lowMarket] && checkedMarkets[highMarket] && checkedCoins[coinName]) {
+            if (Array.isArray(checkedCoins[coinName])) {
+                if (!checkedCoins[coinName].includes(lowMarket) && !checkedCoins[coinName].includes(highMarket)) {
                     return true;
                 }
                 else return false;
 
             }
-            else{
+            else {
                 return true;
             }
         }
