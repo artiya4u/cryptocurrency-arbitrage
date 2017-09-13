@@ -278,7 +278,6 @@ let markets = [
                             let coinName = obj["secondary_currency"];
                             if (!coin_prices[coinName]) coin_prices[coinName] = {};
                             coin_prices[coinName].bx = obj.last_price;
-                            console.log('BX:' + obj["secondary_currency"] + '==' + obj.last_price);
                         }
                     }
                     res(coin_prices);
