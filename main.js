@@ -25,6 +25,16 @@ http.listen(port, function () {
     console.log('listening on', port);
 });
 
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    user: "myuser",
+    password: "mypassword",
+    database: "arbitrage"
+});
+
+connection.connect();
 
 require('./settings.js')(); //Includes settings file.
 // let db = require('./db.js'); //Includes db.js
@@ -118,7 +128,7 @@ async function computePrices(data) {
 
                                     }
                                 );
-                                
+
                                 // db.insert({
                                 //     coin: coin,
                                 //     lastSpread: arr[i][0] / arr[j][0],
@@ -148,11 +158,30 @@ async function computePrices(data) {
 
     await loopData();
 
-    console.log("Emitting Results...")
+    console.log("Emitting Results...");
 
     io.emit('results', results);
+    saveResult(results);
 }
 
+function saveResult(results) {
+    let isodate = new Date().toISOString().substr(0, 19);
+    for (let i = 0; i < results.length; i++) {
+        let result = results[i];
+        if (result.spread === Infinity || isNaN(result.spread)) {
+            continue;
+        }
+        let sql = `INSERT INTO
+                       history (coin, spread, market1, last1, market2, last2, last_update) 
+                   VALUES 
+                       ('` + result.coin + `', ` + result.spread + `, '` + result.market1.name + `', ` +
+            result.market1.last + `, '` + result.market2.name + `', ` + result.market2.last + `, '` +
+            isodate + `');`;
+        connection.query(sql, function (err, result) {
+            if (err) throw err;
+        });
+    }
+}
 
 (async function main() {
     let arrayOfRequests = [];
