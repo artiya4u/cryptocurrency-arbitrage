@@ -6,7 +6,7 @@
 'use strict';
 
 console.log('Starting app...');
-
+const heapdump = require('heapdump');
 const request = require('request'), Promise = require("bluebird"); //request for pulling JSON from api. Bluebird for Promises.
 
 const express = require('express'),
@@ -174,9 +174,8 @@ function saveResult(results) {
         let sql = `INSERT INTO
                        history (coin, spread, market1, last1, market2, last2, last_update) 
                    VALUES 
-                       ('` + result.coin + `', ` + result.spread + `, '` + result.market1.name + `', ` +
-            result.market1.last + `, '` + result.market2.name + `', ` + result.market2.last + `, '` +
-            isodate + `');`;
+                       ('${result.coin}', ${result.spread}, '${result.market1.name}', ${result.market1.last}, 
+                       '${result.market2.name}', ${result.market2.last}, '${isodate}');`;
         connection.query(sql, function (err, result) {
             if (err) throw err;
         });
