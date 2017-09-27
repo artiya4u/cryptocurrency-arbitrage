@@ -164,6 +164,11 @@ async function computePrices(data) {
     saveResult(results);
 }
 
+const sql = `INSERT INTO
+                   history (coin, spread, market1, last1, market2, last2, last_update) 
+               VALUES 
+                   (?, ?, ?, ?, ?, ?, ?);`;
+
 function saveResult(results) {
     let isodate = new Date().toISOString().substr(0, 19);
     for (let i = 0; i < results.length; i++) {
@@ -171,12 +176,9 @@ function saveResult(results) {
         if (result.spread === Infinity || isNaN(result.spread)) {
             continue;
         }
-        let sql = `INSERT INTO
-                       history (coin, spread, market1, last1, market2, last2, last_update) 
-                   VALUES 
-                       ('${result.coin}', ${result.spread}, '${result.market1.name}', ${result.market1.last}, 
-                       '${result.market2.name}', ${result.market2.last}, '${isodate}');`;
-        connection.query(sql, function (err, result) {
+        let values = [result.coin, result.spread, result.market1.name, result.market1.last,
+            result.market2.name, result.market2.last, isodate];
+        connection.query(sql, values, function (err, result) {
             if (err) throw err;
         });
     }
