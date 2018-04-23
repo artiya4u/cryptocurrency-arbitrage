@@ -35,6 +35,7 @@ const connection = mysql.createConnection({
 });
 
 connection.connect();
+createTable();
 
 require('./settings.js')(); //Includes settings file.
 // let db = require('./db.js'); //Includes db.js
@@ -128,20 +129,6 @@ async function computePrices(data) {
 
                                     }
                                 );
-
-                                // db.insert({
-                                //     coin: coin,
-                                //     lastSpread: arr[i][0] / arr[j][0],
-                                //     market1: {
-                                //         name: arr[i][1],
-                                //         last: arr[i][0]
-                                //     },
-                                //     market2: {
-                                //         name: arr[j][1],
-                                //         last: arr[j][0]
-                                //     }
-                                // })
-
                             }
                         }
 
@@ -182,6 +169,24 @@ function saveResult(results) {
             if (err) throw err;
         });
     }
+}
+
+function createTable() {
+    let ddl = `CREATE TABLE IF NOT EXISTS history
+        (
+          coin        varchar(32)    null,
+          spread      decimal(16, 8) null,
+          market1     varchar(32)    null,
+          last1       decimal(16, 8) null,
+          market2     varchar(32)    null,
+          last2       decimal(16, 8) null,
+          last_update datetime       null
+        )
+          engine = InnoDB;
+        `;
+    connection.query(ddl, function (err, result) {
+        if (err) throw err;
+    });
 }
 
 (async function main() {
